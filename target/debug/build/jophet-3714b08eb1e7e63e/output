@@ -1,0 +1,1 @@
+cargo:rustc-env=JOPHET_HOST_TRIPLE=x86_64-pc-windows-msvc
