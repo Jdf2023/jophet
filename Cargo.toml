@@ -1,0 +1,56 @@
+# Cargo.toml
+# This is the manifest file for the Jophet compiler crate.
+# It defines metadata about the package and lists all its dependencies.
+
+[package]
+name = "jophet"
+version = "0.1.0"
+edition = "2021"
+
+# The `[dependencies]` section lists all the external crates this project depends on.
+[dependencies]
+# Used for parsing command-line arguments and building the CLI structure.
+# "derive": Enables the convenient derive macros for `Parser` and `Subcommand`.
+# "cargo": Enables colorized help output that respects terminal settings.
+clap = { version = "4.4", features = ["derive", "cargo"] }
+
+# A utility crate to find the user's home directory, essential for locating
+# the `.jophet` directory where libraries and binaries are installed.
+home = "0.5"
+
+# The core serialization and deserialization framework.
+# Used for parsing `Jophet.toml` and for serializing/deserializing library metadata.
+# The "derive" feature enables `#[derive(Serialize, Deserialize)]`.
+serde = { version = "1.0", features = ["derive"] }
+
+# Provides JSON support for the Serde framework.
+# Used specifically for the `.jophet-meta` library metadata files.
+serde_json = "1.0"
+
+# Provides TOML support for the Serde framework.
+# Used for parsing the `Jophet.toml` configuration file.
+toml = "0.8"
+
+# A library for generating beautiful, human-readable diagnostic reports (compiler errors).
+ariadne = "0.4"
+
+# A library for adding color and styling to terminal output.
+# Used for status messages like "Compiling", "Finished", etc.
+colored = "2.1"
+
+# A build-time dependency helper for invoking a C compiler.
+# This is the core of the build system for the generated C code. It abstracts
+# away the differences between compilers like MSVC, GCC, and Clang.
+cc = "1.0"
+
+# A drop-in replacement for `HashMap` and `HashSet` that preserves insertion order.
+# Used in the C backend to ensure that generated C definitions appear in a
+# consistent, deterministic order in the output file.
+indexmap = "2.1"
+
+# A high-performance, compliant Markdown parser.
+# Used by the documentation generator to render doc comments.
+pulldown-cmark = "0.9"
+
+# A library for interactive line reading with history support, for the REPL.
+rustyline = "13.0"
